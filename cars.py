@@ -1,25 +1,37 @@
 from turtle import Turtle
 import random
 
-class Car(Turtle):
+colors=["red", "light blue", "blue", "yellow", "pink"]
+
+class CarList(Turtle):
 
     def __init__(self):
 
-        super().__init__()
+        self.car_list=[]
+        self.starting_dist=10
     
-        
-    def create_car(self):
-        self.shape("square")
-        self.color("red")
-        self.shapesize(stretch_wid=1, stretch_len=3)
-        self.penup()
-        self.setheading(180)
-        self.goto(400, random.randint(-250,250))
+    def create_cars(self):
+
+        random_choice=random.randint(1,5)
+        if (random_choice==1):
+            t=Turtle()
+            t.shape("square")
+            t.color(random.choice(colors))
+            t.shapesize(stretch_wid=1, stretch_len=3)
+            t.penup()
+            t.setheading(180)
+            t.speed("fast")
+            t.goto(400, random.randint(-200,200))
+            self.car_list.append(t)
         
 
-    def move_car(self):
-        #new_x=self.xcor()-10
-        #new_y=self.ycor()
-        #self.goto(new_x,new_y)
-        if(self.xcor()>-400):
-            self.forward(10)
+    def move_cars(self):
+
+        for i in self.car_list:
+            if(i.xcor()>-450):
+                i.forward(self.starting_dist)
+
+    def increase_distance(self):
+
+        self.starting_dist+=10
+  
